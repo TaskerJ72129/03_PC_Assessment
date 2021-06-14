@@ -43,14 +43,14 @@ def currency(x):
 
 item_list = []
 weight_list = []
-price_list = []
+Cost_list = []
 weight_kg_list = []
 
 variable_dict = {
     "Item": item_list,
     "Weight(g)": weight_list,
     "Weight(kg)": weight_kg_list,
-    "Price": price_list
+    "Cost": Cost_list
 }
 
 # ask for budget
@@ -58,7 +58,7 @@ budget = num_check("What is your budget? $",
                    "The budget must be a number more than 0",
                    float)
 
-# loop to get component, weight and price
+# loop to get component, weight and Cost
 item_name = ""
 while item_name.lower() != "xxx":
 
@@ -74,16 +74,16 @@ while item_name.lower() != "xxx":
                          "The weight must be a number "
                          "more than zero",
                          float)
-    price = num_check("How much does it cost? $",
-                      "The price must be a number more than 0",
+    Cost = num_check("How much does it cost? $",
+                      "The Cost must be a number more than 0",
                       float)
     weight_kg = weight / 1000
 
-    # add item, weight and price to lists
+    # add item, weight and Cost to lists
     
     item_list.append(item_name)
     weight_list.append(weight)
-    price_list.append(price)
+    Cost_list.append(Cost)
     weight_kg_list.append(weight_kg)
 
 
@@ -91,11 +91,11 @@ variable_frame = pandas.DataFrame(variable_dict)
 variable_frame = variable_frame.set_index('Item')
 
 # Calculate cost of each component
-variable_frame['Cost per kg'] = variable_frame['Price']\
+variable_frame['Unit Price (per kg)'] = variable_frame['Cost']\
                          / variable_frame['Weight(kg)']
 
 # Currency Formatting ( uses currency function)
-add_dollars = ['Price', 'Cost per kg']
+add_dollars = ['Cost', 'Unit Price (per kg)']
 for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
 
