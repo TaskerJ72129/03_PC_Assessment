@@ -29,12 +29,12 @@ def instructions(options):
 
     show_help = "invalid choice"
     while show_help == "invalid choice":
-        show_help = input("Would you like to read the instructions? ").lower()
+        show_help = input("Do you want to read the instructions? ").lower()
+        print()
         show_help = string_check(show_help, options)
 
     if show_help == "Yes":
-        print()
-        print("**** Mega Movie Fundraiser Instructions ****")
+        print("**** Instructions ****")
         print("instructions go here")
         print()
 
@@ -44,5 +44,6 @@ yes_no = [
     ["yes", "y"],
     ["no", "n"]
 ]
-
-instructions(yes_no)
+# Loop to make testing faster...
+for item in range(0,6):
+    instructions(yes_no)

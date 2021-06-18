@@ -90,6 +90,7 @@ while item_name.lower() != "xxx":
 variable_frame = pandas.DataFrame(variable_dict)
 variable_frame = variable_frame.set_index('Item')
 
+
 # Calculate cost of each component
 variable_frame['Unit Price (per kg)'] = variable_frame['Cost']\
                          / variable_frame['Weight(kg)']
@@ -98,6 +99,9 @@ variable_frame['Unit Price (per kg)'] = variable_frame['Cost']\
 add_dollars = ['Cost', 'Unit Price (per kg)']
 for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
+
+# sort unit price ascending
+variable_frame = variable_frame.sort_values(by='Unit Price (per kg)')
 
 # ************************ Printing Area **************************
 print()
