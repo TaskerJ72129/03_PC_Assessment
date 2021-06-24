@@ -3,6 +3,7 @@ import pandas
 
 # ---- Functions go here ----
 
+
 # Checks that string response is not blank
 def not_blank(question, error):
 
@@ -15,6 +16,7 @@ def not_blank(question, error):
             continue
 
         return response
+
 
 # checks that input is either a float or an integer that is more than 0.
 # Takes in custom error messages
@@ -32,6 +34,7 @@ def num_check(question, error, num_type):
 
         except ValueError:
             print(error)
+
 
 # currency formatting function
 def currency(x):
@@ -71,12 +74,12 @@ while item_name.lower() != "xxx":
         break
 
     weight = num_check("weight(g):",
-                         "The weight must be a number "
-                         "more than zero",
-                         float)
+                       "The weight must be a number "
+                       "more than zero",
+                       float)
     Cost = num_check("How much does it cost? $",
-                      "The Cost must be a number more than 0",
-                      float)
+                     "The Cost must be a number more than 0",
+                     float)
     weight_kg = weight / 1000
 
     # add item, weight and Cost to lists
@@ -103,8 +106,9 @@ add_dollars = ['Cost', 'Unit Price (per kg)']
 for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
 
-recommendation = variable_frame.head(1)
+number = 1
 
+recommendation = variable_frame.head(number)
 # ************************ Printing Area **************************
 print()
 print("budget: ${}".format(budget))
