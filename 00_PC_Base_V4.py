@@ -3,6 +3,29 @@ import pandas
 
 # ---- Functions go here ----
 
+# String check
+def string_check(choice, options):
+
+    for var_list in options:
+
+        # if it is in one of the lists, return the full name
+        if choice in var_list:
+
+            chosen = var_list[0].title()
+            is_valid = "yes"
+            break
+
+        # if the chosen option is not valid, set in_valid to no 
+        else:
+            is_valid = "no"
+
+    # if it is not OK - ask question again.
+    if is_valid == "yes":
+        return chosen
+    else:
+        print("Please enter a valid option\n")
+        return "invalid choice"
+
 
 # Checks that string response is not blank
 def not_blank(question, error):
@@ -35,6 +58,21 @@ def num_check(question, error, num_type):
         except ValueError:
             print(error)
 
+# function to show instructions if necessary
+def instructions(options):
+
+    show_help = "invalid choice"
+    while show_help == "invalid choice":
+        show_help = input("Do you want to read the instructions? ").lower()
+        print()
+        show_help = string_check(show_help, options)
+
+    if show_help == "Yes":
+        print("**** Instructions ****")
+        print("instructions go here")
+        print()
+
+    return ""
 
 # currency formatting function
 def currency(x):
@@ -46,14 +84,14 @@ def currency(x):
 
 item_list = []
 weight_list = []
-Cost_list = []
+cost_list = []
 weight_kg_list = []
 
 variable_dict = {
     "Item": item_list,
     "Weight(g)": weight_list,
     "Weight(kg)": weight_kg_list,
-    "Cost": Cost_list
+    "Cost": cost_list
 }
 
 # ask for budget
@@ -77,16 +115,15 @@ while item_name.lower() != "xxx":
                        "The weight must be a number "
                        "more than zero",
                        float)
-    Cost = num_check("How much does it cost? $",
+    cost = num_check("How much does it cost? $",
                      "The Cost must be a number more than 0",
                      float)
     weight_kg = weight / 1000
 
     # add item, weight and Cost to lists
-    
     item_list.append(item_name)
     weight_list.append(weight)
-    Cost_list.append(Cost)
+    cost_list.append(cost)
     weight_kg_list.append(weight_kg)
 
 
@@ -107,7 +144,10 @@ for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
 
 number = 1
+variable_frame.iat[0,0]
 
+
+# recommendation
 recommendation = variable_frame.head(number)
 # ************************ Printing Area **************************
 print()
@@ -117,3 +157,5 @@ print(variable_frame)
 print()
 print("**** Recommendation ****")
 print(recommendation)
+
+
