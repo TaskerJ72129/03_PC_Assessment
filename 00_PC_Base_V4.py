@@ -144,9 +144,16 @@ for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
 
 number = 1
-variable_frame.iat[0,0]
+a = 0
+s = variable_frame.iat[a,0]
+print(type(s))
+c = (float(s))
+print(type(c))
 
-
+while c > budget:
+    a += 1
+    print(a)
+    
 # recommendation
 recommendation = variable_frame.head(number)
 # ************************ Printing Area **************************
