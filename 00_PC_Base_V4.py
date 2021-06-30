@@ -104,7 +104,6 @@ item_name = ""
 while item_name.lower() != "xxx":
 
     print()
-    # get name, weight and item
     item_name = not_blank("Item name: ",
                           "The component name can't be "
                           "blank.")
@@ -118,6 +117,7 @@ while item_name.lower() != "xxx":
     cost = num_check("How much does it cost? $",
                      "The Cost must be a number more than 0",
                      float)
+    # convert g to kg
     weight_kg = weight / 1000
 
     # add item, weight and Cost to lists
@@ -144,7 +144,16 @@ for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
 
 number = 1
-variable_frame.iat[0,0]
+
+a = 0
+d = variable_frame.iat[a,0]
+print(d)
+s = d[1:]
+print(s)
+c = (float(s))
+
+while c > budget:
+    a += 1
 
 
 # recommendation
