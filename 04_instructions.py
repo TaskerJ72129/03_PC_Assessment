@@ -32,8 +32,12 @@ def instructions(options):
         show_help = string_check(show_help, options)
 
     if show_help == "Yes":
-        print("**** Instructions ****")
-        print("")
+        print("****  Price Comparison Instructions ****")
+        print("Price comparison can be used to compare items prices and" 
+              "recommend the best choice"
+              ""
+              ""
+             )  
         print()
 
     return ""
