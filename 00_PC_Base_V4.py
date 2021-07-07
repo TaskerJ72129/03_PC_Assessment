@@ -114,6 +114,7 @@ while item_name.lower() != "xxx":
                        "The weight must be a number "
                        "more than zero",
                        float)
+
     cost = num_check("How much does it cost? $",
                      "The Cost must be a number more than 0",
                      float)
@@ -146,7 +147,7 @@ for item in add_dollars:
 number = 1
 
 a = 0
-d = variable_frame.iat[a,0]
+d = variable_frame.iat[a, 0]
 print(d)
 s = d[1:]
 print(s)

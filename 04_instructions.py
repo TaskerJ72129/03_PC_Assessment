@@ -33,12 +33,11 @@ def instructions(options):
 
     if show_help == "Yes":
         print("****  Price Comparison Instructions ****")
-        print("Price comparison can be used to compare items prices and" 
-              "recommend the best choice"
-              ""
-              "first enter budget"
-              "then enter item name, weight and cost of all the items you want"
-              "type xxx when you are done"
+        print("Price comparison can be used to compare items prices and " 
+              "recommend the best choice\n\n"
+              "First enter budget\n"
+              "Then enter item name, weight and cost of all the items you want\n"
+              "Type xxx when you are done\n"
              )  
         print()
 
@@ -50,5 +49,5 @@ yes_no = [
     ["no", "n"]
 ]
 # Loop to make testing faster...
-for item in range(0,6):
+for item in range(0, 6):
     instructions(yes_no)
