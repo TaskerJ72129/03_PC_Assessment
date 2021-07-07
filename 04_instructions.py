@@ -36,7 +36,9 @@ def instructions(options):
         print("Price comparison can be used to compare items prices and" 
               "recommend the best choice"
               ""
-              ""
+              "first enter budget"
+              "then enter item name, weight and cost of all the items you want"
+              "type when you are done"
              )  
         print()
 
