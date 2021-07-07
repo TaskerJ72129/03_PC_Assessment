@@ -44,6 +44,7 @@ def instructions(options):
 
     return ""
 
+
 yes_no = [
     ["yes", "y"],
     ["no", "n"]
