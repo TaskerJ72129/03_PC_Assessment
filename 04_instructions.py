@@ -38,7 +38,7 @@ def instructions(options):
               ""
               "first enter budget"
               "then enter item name, weight and cost of all the items you want"
-              "type when you are done"
+              "type xxx when you are done"
              )  
         print()
 
