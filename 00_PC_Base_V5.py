@@ -68,8 +68,15 @@ def instructions(options):
         show_help = string_check(show_help, options)
 
     if show_help == "Yes":
-        print("**** Instructions ****")
-        print("instructions go here")
+        print("****  Price Comparison Instructions ****")
+        print("Price comparison can be used to compare items prices and " 
+              "recommend the best choice\n\n"
+              "First enter budget\n"
+              "Then enter item name, weight and cost of all the items you want\n"
+              "Type xxx when you are done\n"
+              "it will print out 1 list with everything "
+              "and then the recommended choice will be below that"
+             )  
         print()
 
     return ""
@@ -82,6 +89,12 @@ def currency(x):
 # Main routine goes here
 # Set up dictionaries and lists
 
+
+yes_no = [
+    ["yes", "y"],
+    ["no", "n"]
+]
+
 item_list = []
 weight_list = []
 cost_list = []
@@ -93,6 +106,9 @@ variable_dict = {
     "Weight(kg)": weight_kg_list,
     "Cost": cost_list
 }
+
+# instructions
+instructions(yes_no)
 
 # ask for budget
 budget = num_check("What is your budget? $",
@@ -145,22 +161,18 @@ add_dollars = ['Cost', 'Unit Price (per kg)']
 for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
 
-number = 1
-
 a = 0
 
+# find the lowest price per kg that is under budget
 valid = "false"
 while valid != "true":
 
     d = variable_frame.iat[a, 0]
-    print(d)
     s = d[1:]
-    print(s)
     c = (float(s))
 
     if c > budget:
         a += 1
-        valid = "false"
     else:
         valid = "true"
 

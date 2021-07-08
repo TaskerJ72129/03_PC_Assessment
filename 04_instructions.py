@@ -38,6 +38,8 @@ def instructions(options):
               "First enter budget\n"
               "Then enter item name, weight and cost of all the items you want\n"
               "Type xxx when you are done\n"
+              "it will print out 1 list with everything "
+              "and then the recommended choice will be below that"
              )  
         print()
 
