@@ -71,7 +71,7 @@ def instructions(options):
         print("****  Price Comparison Instructions ****")
         print("Price comparison can be used to compare items prices and " 
               "recommend the best choice\n\n"
-              "First enter budget\n"
+              "First enter your budget\n"
               "Then enter item name, weight and cost of all the items you want\n"
               "Type xxx when you are done\n"
               "it will print out 1 list with everything "
@@ -161,23 +161,31 @@ add_dollars = ['Cost', 'Unit Price (per kg)']
 for item in add_dollars:
     variable_frame[item] = variable_frame[item].apply(currency)
 
-a = 0
-
+point = 0
+length = len(cost_list)
 # find the lowest price per kg that is under budget
 valid = "false"
 while valid != "true":
+    # find if all of the items cost more that the users budget 
+    if point + 1 > length:
+        point = "none"
+        valid = "true"
+        break
 
-    d = variable_frame.iat[a, 0]
+    d = variable_frame.iat[point, 0]
     s = d[1:]
     c = (float(s))
 
     if c > budget:
-        a += 1
+        point += 1
     else:
         valid = "true"
 
 # recommendation
-recommendation = variable_frame.iloc[[a]]
+if point == "none":
+    recommendation = "none of the items are within your budget"
+else:
+    recommendation = variable_frame.iloc[[point]]
 
 
 # ************************ Printing Area **************************
