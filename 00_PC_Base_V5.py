@@ -144,10 +144,8 @@ while item_name.lower() != "xxx":
     cost_list.append(cost)
     weight_kg_list.append(weight_kg)
 
-
 variable_frame = pandas.DataFrame(variable_dict)
 variable_frame = variable_frame.set_index('Item')
-
 
 # Calculate cost of each component
 variable_frame['Unit Price (per kg)'] = variable_frame['Cost']\
@@ -172,8 +170,11 @@ while valid != "true":
         valid = "true"
         break
 
+    # gets a certain point in the dataframe
     d = variable_frame.iat[point, 0]
+    # takes off the $ in the front
     s = d[1:]
+    # converts the string to a float
     c = (float(s))
 
     if c > budget:
