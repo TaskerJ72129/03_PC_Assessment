@@ -16,7 +16,7 @@ def string_check(choice, options):
             is_valid = "yes"
             break
 
-        # if the chosen option is not valid, set in_valid to no 
+        # if the chosen option is not valid, set is_valid to no 
         else:
             is_valid = "no"
 
@@ -97,13 +97,13 @@ yes_no = [
 ]
 
 item_list = []
-weight_list = []
+weight_g_list = []
 cost_list = []
 weight_kg_list = []
 
 variable_dict = {
     "Item": item_list,
-    "Weight(g)": weight_list,
+    "Weight(g)": weight_g_list,
     "Weight(kg)": weight_kg_list,
     "Cost": cost_list
 }
@@ -116,7 +116,7 @@ budget = num_check("What is your budget? $",
                    "The budget must be a number more than 0",
                    float)
 
-# loop to get component, weight and Cost
+# loop to get component, weight(g and kg) and Cost
 item_name = ""
 while item_name.lower() != "xxx":
 
@@ -128,22 +128,46 @@ while item_name.lower() != "xxx":
     # if xxx break loop
     if item_name.lower() == "xxx":
         break
-    # Get weight and if there is an error print "The weight must be a number more than zero" and ask again
-    weight = num_check("weight(g):",
-                       "The weight must be a number "
-                       "more than zero",
-                       float)
+
+    valid = False 
+    while not valid:
+
+        # ask for g or kg
+        weight = input("weight(g or kg):")
+
+        # check if the last 2 characters are kg
+        if weight[-2:] == "kg":
+            last_chars = weight
+            amount = weight[:-2]
+            weight_kg = (float(amount))
+            weight_g = weight_kg * 1000
+
+            valid = True
+
+        # if its not kg check if last character is g
+        elif weight[-1] == "g":
+            # Get amount (everything before the g)
+            amount = weight[:-1]
+            weight_g = (float(amount))
+            weight_kg = weight_g / 1000
+
+            valid = True
+
+
+        else:
+            print("Please enter _kg or _g")
+
     # Get cost and if there is an error print "the cost must be a number more than 0" and ask again
     cost = num_check("How much does it cost? $",
                      "The Cost must be a number more than 0",
                      float)
 
     # convert g to kg
-    weight_kg = weight / 1000
+    weight_kg = weight_g / 1000
 
     # add item, weight and Cost to lists
     item_list.append(item_name)
-    weight_list.append(weight)
+    weight_g_list.append(weight_g)
     cost_list.append(cost)
     weight_kg_list.append(weight_kg)
 
