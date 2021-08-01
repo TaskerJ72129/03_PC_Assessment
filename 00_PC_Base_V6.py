@@ -3,6 +3,7 @@ import pandas
 
 # ---- Functions go here ----
 
+
 # String check
 def string_check(choice, options):
 
@@ -120,17 +121,19 @@ item_name = ""
 while item_name.lower() != "xxx":
 
     print()
+    # Get item name and if there is an error print "The component name can't be blank" and ask again
     item_name = not_blank("Item name: ",
                           "The component name can't be "
                           "blank.")
+    # if xxx break loop
     if item_name.lower() == "xxx":
         break
-
+    # Get weight and if there is an error print "The weight must be a number more than zero" and ask again
     weight = num_check("weight(g):",
                        "The weight must be a number "
                        "more than zero",
                        float)
-
+    # Get cost and if there is an error print "the cost must be a number more than 0" and ask again
     cost = num_check("How much does it cost? $",
                      "The Cost must be a number more than 0",
                      float)
@@ -144,7 +147,9 @@ while item_name.lower() != "xxx":
     cost_list.append(cost)
     weight_kg_list.append(weight_kg)
 
+# create dataframe
 variable_frame = pandas.DataFrame(variable_dict)
+# set index as item
 variable_frame = variable_frame.set_index('Item')
 
 # Calculate cost of each component
@@ -171,12 +176,13 @@ while valid != "true":
         break
 
     # gets a certain point in the dataframe
-    d = variable_frame.iat[point, 0]
-    # takes off the $ in the front
-    s = d[1:]
+    a = variable_frame.iat[point, 0]
+    # takes off the $ in the front of the string
+    b = a[1:]
     # converts the string to a float
-    c = (float(s))
-
+    c = (float(b))
+    # if the point in the dataframe is greater than the budget
+    # then add 1 to point so it will try the next point in the dataframe
     if c > budget:
         point += 1
     else:
@@ -185,6 +191,7 @@ while valid != "true":
 # recommendation
 if point == "none":
     recommendation = "none of the items are within your budget"
+    # recommendation is the highes point that is below budget
 else:
     recommendation = variable_frame.iloc[[point]]
 

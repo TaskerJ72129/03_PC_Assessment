@@ -2,7 +2,7 @@
 valid = False 
 while not valid:
 
-    # ask for profit goal...
+    # ask for g or kg
     weight = input("weight(g or kg):")
 
     # check if first character is $...
@@ -13,7 +13,7 @@ while not valid:
 
         valid = True
     # check if the last character is %
-    elif weight [-1] == "kg":
+    elif weight[-1] == "kg":
         kg_or_g = "kg"
         weight_kg = (float(weight))
 
