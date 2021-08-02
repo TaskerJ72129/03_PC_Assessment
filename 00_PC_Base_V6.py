@@ -153,7 +153,6 @@ while item_name.lower() != "xxx":
 
             valid = True
 
-
         else:
             print("Please enter _kg or _g")
 
