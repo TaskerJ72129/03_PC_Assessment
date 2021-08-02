@@ -7,7 +7,6 @@ while not valid:
 
     # check if the last 2 characters are kg
     if weight[-2:] == "kg":
-        last_chars = weight
         amount = weight[:-2]
         weight_kg = (float(amount))
         weight_g = weight_kg * 1000
@@ -27,6 +26,7 @@ while not valid:
     else:
         print("Please enter _kg or _g")
         
-print(weight)
+print("Weight_g")
 print(weight_g)
+print("Weight_kg")
 print(weight_kg)
