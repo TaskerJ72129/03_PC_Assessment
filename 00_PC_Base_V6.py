@@ -132,37 +132,41 @@ while item_name.lower() != "xxx":
     valid = False 
     while not valid:
 
-        # ask for g or kg
-        weight = input("weight(g or kg):")
+        try:
+            # ask for g or kg
+            weight = input("weight(g or kg):")
 
-        # check if the last 2 characters are kg
-        if weight[-2:] == "kg":
-            last_chars = weight
-            amount = weight[:-2]
-            weight_kg = (float(amount))
-            weight_g = weight_kg * 1000
+            # check if the last 2 characters are kg
+            if weight[-2:] == "kg":
+                amount = weight[:-2]
+                weight_kg = (float(amount))
+                weight_g = weight_kg * 1000
 
-            valid = True
+                valid = True
 
-        # if its not kg check if last character is g
-        elif weight[-1] == "g":
-            # Get amount (everything before the g)
-            amount = weight[:-1]
-            weight_g = (float(amount))
-            weight_kg = weight_g / 1000
+            # if its not kg check if last character is g
+            elif weight[-1] == "g":
+                # Get amount (everything before the g)
+                amount = weight[:-1]
+                weight_g = (float(amount))
+                weight_kg = weight_g / 1000
 
-            valid = True
+                valid = True
 
-        else:
+
+            else:
+                print("Please enter _kg or _g")
+                print()
+
+        except ValueError:
             print("Please enter _kg or _g")
+            print()
 
     # Get cost and if there is an error print "the cost must be a number more than 0" and ask again
     cost = num_check("How much does it cost? $",
                      "The Cost must be a number more than 0",
                      float)
 
-    # convert g to kg
-    weight_kg = weight_g / 1000
 
     # add item, weight and Cost to lists
     item_list.append(item_name)
@@ -222,7 +226,6 @@ else:
 # ************************ Printing Area **************************
 print()
 print("budget: ${}".format(budget))
-print()
 print(variable_frame)
 print()
 print("**** Recommendation ****")
