@@ -11,6 +11,7 @@ while not valid:
             weight_kg = (float(amount))
             weight_g = weight_kg * 1000
 
+
             valid = True
 
         # if its not kg check if last character is g
@@ -21,6 +22,24 @@ while not valid:
             weight_kg = weight_g / 1000
 
             valid = True
+        
+        
+        try:
+            # Check amount is a number more that zero
+            if weight_g <= 0:
+                print("Please enter a number above 0")
+                valid = False
+
+            if weight_kg <= 0:
+                print("Please enter a number above 0")
+                valid = False
+
+            else:
+                valid = True
+
+        except ValueError:
+            print("Please enter _kg or _g")
+            valid = False
 
 
         else:
