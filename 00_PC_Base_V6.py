@@ -203,14 +203,16 @@ while valid != "true":
         break
 
     # gets a certain point in the dataframe
-    a = variable_frame.iat[point, 0]
+    point_in_dataframe = variable_frame.iat[point, 0]
+    # convert to string
+    removed_1 = (str(point_in_dataframe))
     # takes off the $ in the front of the string
-    b = a[1:]
+    removed_2 = removed_1[1:]
     # converts the string to a float
-    c = (float(b))
+    point_in_dataframe = (float(removed_2))
     # if the point in the dataframe is greater than the budget
     # then add 1 to point so it will try the next point in the dataframe
-    if c > budget:
+    if point_in_dataframe > budget:
         point += 1
     else:
         valid = "true"
