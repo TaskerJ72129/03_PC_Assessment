@@ -20,22 +20,34 @@ def yes_no(question):
 
 valid = False 
 while not valid:
-    try:
+
         # ask for g or kg
         weight = input("weight(g or kg):")
 
         # check if the last 2 characters are kg
         if weight[-2:] == "kg":
             type = "kg"
+            amount = weight[:-2]
 
         # if its not kg check if last character is g
         elif weight[-1] == "g":
             type = "g"
+            amount = weight[:-1]
 
         else:
             amount = weight
             type = "unknown"
-            amount = (float(amount))
+
+        try:
+            # Check amount is a number more that zero
+            amount = float(amount)
+            if amount <= 0:
+                print("Please enter _kg or _g")
+                continue
+        except ValueError:
+            print("Please enter _kg or _g")
+            continue
+
 
         if type == "unknown" and amount <= 5:
 
@@ -48,17 +60,15 @@ while not valid:
                 type = "g"
 
         elif type == "unknown" and amount > 5:
-            yesorno = yes_no("Do you mean {}g"
+            yesorno_g = yes_no("Do you mean {}g"
                     "? , (y / n): ".format(amount, amount))
             
-            if yesorno == "yes":
+            if yesorno_g == "yes":
                 type = "g"
             else:
                 type = "kg"
 
         if type == "kg":
-            amount = weight[:-2]
-
             weight_kg = (float(amount))
             weight_g = weight_kg * 1000
 
@@ -66,7 +76,6 @@ while not valid:
 
         else:
             # Get amount (everything before the g)
-            amount = weight[:-1]
             weight_g = (float(amount))
             weight_kg = weight_g / 1000
 
@@ -74,8 +83,6 @@ while not valid:
 
 
 
-    except ValueError:
-        print("Please enter _kg or _g")
         
 print("Weight_g")
 print(weight_g)
