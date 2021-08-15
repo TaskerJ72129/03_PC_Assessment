@@ -148,10 +148,11 @@ while item_name.lower() != "xxx":
     if item_name.lower() == "xxx":
         break
 
+    #  loop to get a weight kg or g 
     valid = False 
     while not valid:
 
-        # ask for g or kg
+        # ask for g or kg (with error)
         weight = not_blank("weight(g or kg):" , "must enter a number above 0")
 
         # check if the last 2 characters are kg
@@ -163,44 +164,52 @@ while item_name.lower() != "xxx":
         elif weight[-1] == "g":
             type = "g"
             amount = weight[:-1]
-
+        # if there is no unit only a number then make type unknown for now
         else:
             amount = weight
             type = "unknown"
 
+        # Check amount is a number more that zero and a float
         try:
-            # Check amount is a number more that zero
             amount = float(amount)
             if amount <= 0:
-                print("Please enter _kg or _g")
+                print("please enter an amount and a unit, eg: 100 g")
                 continue
+        
         except ValueError:
-            print("Please enter _kg or _g")
+            print("please enter an amount and a unit, eg: 100 g")
             continue
 
-        if type == "unknown" and amount <= 5:
+        # if its unknown and <= 10 then ask if they mean kg
+        if type == "unknown" and amount <= 10:
 
             yesorno = yes_no_2("Do you mean {}kg? , (y / n): ".format(amount, amount))
 
+            # if they say yes then make the type kg
             if yesorno == "yes":            
                 type = "kg"
+            # if no then make the type g
             else:
                 type = "g"
-
-        elif type == "unknown" and amount > 5:
+        # if its unknown and > 10 then ask if they mean g
+        elif type == "unknown" and amount > 10:
             yesorno_g = yes_no_2("Do you mean {}g? , (y / n): ".format(amount, amount))
             
+            # if they say yes then make type g
             if yesorno_g == "yes":
                 type = "g"
+            # if no then make type kg
             else:
                 type = "kg"
 
+        # if type is kg then make a float also * by 1000 to get a weight in grams aswell
         if type == "kg":
             weight_kg = (float(amount))
             weight_g = weight_kg * 1000
 
             valid = True
 
+        # if type is not kg then make a float also . by 1000 to get a weight in kilograms aswell
         else:
             # Get amount (everything before the g)
             weight_g = (float(amount))
