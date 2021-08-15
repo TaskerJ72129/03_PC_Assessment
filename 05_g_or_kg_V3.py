@@ -18,11 +18,25 @@ def yes_no(question):
         print("Please enter either yes or no...\n")
 
 
+# Checks that string response is not blank
+def not_blank(question, error):
+
+    valid = False
+    while not valid:
+        response = input(question)
+
+        if response == "":
+            print("{}.  \nPlease try again.\n".format(error))
+            continue
+
+        return response
+
+
 valid = False 
 while not valid:
 
         # ask for g or kg
-        weight = input("weight(g or kg):")
+        weight = not_blank("weight(g or kg):" , "must enter a number above 0")
 
         # check if the last 2 characters are kg
         if weight[-2:] == "kg":

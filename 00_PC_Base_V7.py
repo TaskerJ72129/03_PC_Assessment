@@ -43,7 +43,7 @@ def string_check(choice, options):
     if is_valid == "yes":
         return chosen
     else:
-        print("Please enter a valid option\n")
+        print("Please enter either yes or no (or y or n)\n")
         return "invalid choice"
 
 
@@ -152,7 +152,7 @@ while item_name.lower() != "xxx":
     while not valid:
 
         # ask for g or kg
-        weight = input("weight(g or kg):")
+        weight = not_blank("weight(g or kg):" , "must enter a number above 0")
 
         # check if the last 2 characters are kg
         if weight[-2:] == "kg":
@@ -178,11 +178,9 @@ while item_name.lower() != "xxx":
             print("Please enter _kg or _g")
             continue
 
-
         if type == "unknown" and amount <= 5:
 
-            yesorno = yes_no_2("Do you mean {}kg"
-                            "? , (y / n): ".format(amount, amount))
+            yesorno = yes_no_2("Do you mean {}kg? , (y / n): ".format(amount, amount))
 
             if yesorno == "yes":            
                 type = "kg"
@@ -210,12 +208,10 @@ while item_name.lower() != "xxx":
 
             valid = True
 
-
     # Get cost and if there is an error print "the cost must be a number more than 0" and ask again
     cost = num_check("How much does it cost? $",
                      "The Cost must be a number more than 0",
                      float)
-
 
     # add item, weight and Cost to lists
     item_list.append(item_name)
